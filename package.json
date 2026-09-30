@@ -1,0 +1,15 @@
+{
+  "name": "dora-web-panel",
+  "version": "1.0.0",
+  "main": "webPanel.js",
+  "scripts": {
+    "start": "node webPanel.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "body-parser": "^1.20.2",
+    "bcryptjs": "^2.4.3",
+    "axios": "^1.6.0"
+  }
+}
