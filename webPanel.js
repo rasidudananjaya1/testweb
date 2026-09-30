@@ -120,11 +120,73 @@ input:focus,select:focus{outline:none;border-color:#ff0033;box-shadow:0 0 0 3px 
 .result{margin-top:18px;padding:16px;background:rgba(0,0,0,0.4);border-left:3px solid #ff0033;border-radius:8px;font-family:monospace;font-size:12px;color:#00e676;white-space:pre-wrap;word-break:break-all;line-height:1.6}
 .loader{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:8px;vertical-align:middle}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:520px){.header h1{font-size:12px}.card{padding:20px}}
+
+/* === VOLTRA-X LOGIN STYLE === */
+.voltra-bg{background:#050507;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;position:relative;overflow:hidden}
+.voltra-bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 20% 20%,rgba(255,0,60,0.15),transparent 40%),radial-gradient(circle at 80% 80%,rgba(120,0,255,0.12),transparent 40%);pointer-events:none;z-index:0}
+.voltra-container{width:100%;max-width:420px;text-align:center;position:relative;z-index:2}
+.voltra-emblem{font-size:90px;margin-bottom:10px;filter:drop-shadow(0 0 30px rgba(255,0,60,0.8));animation:pulse-glow 2s infinite alternate;display:inline-block}
+@keyframes pulse-glow{from{filter:drop-shadow(0 0 15px rgba(255,0,60,0.4))}to{filter:drop-shadow(0 0 40px rgba(255,0,60,1))}}
+.voltra-title{color:#ff0033;font-size:34px;font-weight:900;letter-spacing:6px;margin-bottom:12px;text-transform:uppercase;text-shadow:0 0 20px rgba(255,0,60,0.5)}
+.voltra-tag{display:inline-block;background:rgba(255,0,51,0.1);border:1px solid rgba(255,0,51,0.3);color:#ff0033;font-size:10px;padding:8px 20px;border-radius:20px;letter-spacing:2px;margin-bottom:30px;font-weight:700;text-transform:uppercase}
+.voltra-info-card{background:rgba(13,13,18,0.85);backdrop-filter:blur(10px);border:1px solid rgba(255,0,51,0.2);border-radius:20px;padding:30px 24px;margin-bottom:24px;box-shadow:0 15px 40px rgba(0,0,0,0.8);position:relative;overflow:hidden}
+.voltra-info-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,transparent,#ff0033,transparent)}
+.voltra-shield{font-size:32px;margin-bottom:12px;filter:drop-shadow(0 0 15px #ff0033)}
+.voltra-info-card h3{color:#fff;font-size:14px;letter-spacing:4px;margin-bottom:12px;text-transform:uppercase;font-weight:800}
+.voltra-info-card p{color:#888;font-size:12px;line-height:1.8;margin-bottom:20px}
+.voltra-form{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
+.voltra-form input{width:100%;padding:16px;background:rgba(0,0,0,0.6);border:1px solid #222;border-radius:12px;color:#fff;text-align:center;font-size:14px;transition:all .3s}
+.voltra-form input::placeholder{color:#555;letter-spacing:1px}
+.voltra-form input:focus{outline:none;border-color:#ff0033;box-shadow:0 0 20px rgba(255,0,51,0.2);background:#0d0d12}
+.voltra-btn-primary{width:100%;padding:18px;background:linear-gradient(135deg,#ff0033,#cc0029);border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:800;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 10px 30px rgba(255,0,51,0.4);transition:all .3s;display:flex;justify-content:center;align-items:center;gap:10px}
+.voltra-btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(255,0,51,0.6)}
+.voltra-btn-outline{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:16px;background:transparent;border:1px solid rgba(255,0,51,0.4);border-radius:12px;color:#ff0033;font-size:13px;font-weight:700;letter-spacing:2px;text-decoration:none;text-transform:uppercase;margin-bottom:12px;transition:all .3s;box-sizing:border-box}
+.voltra-btn-outline:hover{background:rgba(255,0,51,0.1);border-color:#ff0033;box-shadow:0 0 25px rgba(255,0,51,0.2)}
+.voltra-footer-text{color:#444;font-size:11px;letter-spacing:4px;margin-top:30px;margin-bottom:16px;font-weight:700;text-transform:uppercase}
+.voltra-socials{display:flex;justify-content:center;gap:16px}
+.voltra-social-icon{width:48px;height:48px;border-radius:50%;background:#0d0d12;border:1px solid #222;display:flex;align-items:center;justify-content:center;font-size:20px;text-decoration:none;transition:all .3s;color:#fff}
+.voltra-social-icon:hover{border-color:#ff0033;box-shadow:0 0 20px rgba(255,0,51,0.4);transform:translateY(-3px)}
+.voltra-err{color:#ff3355;font-size:12px;margin-bottom:15px;font-weight:600;padding:10px;background:rgba(255,0,60,0.1);border-radius:8px}
+
+@media(max-width:520px){.header h1{font-size:12px}.card{padding:20px}.voltra-title{font-size:26px;letter-spacing:4px}}
 `;
 
 function loginPage(err) {
-    return `<!DOCTYPE html><html><head><title>DORA CRASHER</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style></head><body><div class="center"><div class="box"><div class="logo"><span class="logo-icon">💀</span><h1>DORA CRASHER</h1><p>CONTROL PANEL</p></div><form method="POST" action="/login"><label>Username</label><input type="text" name="username" placeholder="Enter username" required autofocus><label style="margin-top:16px;">Password</label><input type="password" name="password" placeholder="Enter password" required><button type="submit" class="btn">LOGIN</button></form>${err ? '<div class="err">Invalid credentials</div>' : ''}<div class="tag">OWNER @UnknownGuy9876 • @SGCodexs</div></div></div></body></html>`;
+    return `<!DOCTYPE html><html><head><title>DORA CRASHER</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style></head><body>
+<div class="voltra-bg">
+<div class="voltra-container">
+<div class="voltra-emblem">🕷️</div>
+<h1 class="voltra-title">DORA CRASHER</h1>
+<div class="voltra-tag">FAST • UPDATE • STABLE</div>
+
+<div class="voltra-info-card">
+<div class="voltra-shield">🛡️</div>
+<h3>INFORMATION</h3>
+<p>Premium bug bot engine. Enter your credentials to access the system.</p>
+
+${err ? '<div class="voltra-err">❌ Invalid username or password</div>' : ''}
+
+<form method="POST" action="/login" class="voltra-form">
+<input type="text" name="username" placeholder="Enter Username" required autofocus>
+<input type="password" name="password" placeholder="Enter Password" required>
+<button type="submit" class="voltra-btn-primary">🚀 LOGIN TO ENGINE</button>
+</form>
+</div>
+
+<a href="https://t.me/x_dora_id_error_0" target="_blank" class="voltra-btn-outline">🛒 BUY ACCESS</a>
+<a href="https://t.me/x_dora_id_error_0" target="_blank" class="voltra-btn-outline">🎧 CONTACT DEVELOPER</a>
+
+<div class="voltra-footer-text">HUBUNGI KAMI</div>
+<div class="voltra-socials">
+<a href="https://t.me/crasher_dora" target="_blank" class="voltra-social-icon">✈️</a>
+<a href="https://t.me/x_dora_id_error_0" target="_blank" class="voltra-social-icon">✈️</a>
+<a href="https://wa.me/94763007898" target="_blank" class="voltra-social-icon">💬</a>
+</div>
+
+<div class="tag">OWNER @UnknownGuy9876 • @SGCodexs</div>
+</div>
+</div>
+</body></html>`;
 }
 
 app.get("/", (req, res) => res.redirect("/login"));
