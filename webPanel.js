@@ -20,7 +20,7 @@ function loadConfig() {
             config = JSON.parse(fs.readFileSync(CONFIG_FILE, "utf8"));
         } catch (e) {}
     }
-    if (process.env.BOT_API_URL) config.botApiUrl = process.env.BOT_API_URL.replace(/\/$/, "");
+    if (process.env.BOT_API_URL) config.botApiUrl = process.env.BOT_API_URL.replace(/\/$/, "http://104.64.209.157:2000");
     if (process.env.BOT_API_KEY) config.botApiKey = process.env.BOT_API_KEY;
 }
 
