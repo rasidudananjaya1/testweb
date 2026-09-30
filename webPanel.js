@@ -12,6 +12,9 @@ const PORT = process.env.PORT || 3000;
 const CONFIG_FILE = path.join(__dirname, "webConfig.json");
 const USERS_FILE = path.join(__dirname, "webusers.json");
 
+// Video URL - oyata one nam wenas karanna
+const BG_VIDEO_URL = "https://files.catbox.moe/baqsck.mp4";
+
 let config = { botApiUrl: "", botApiKey: "" };
 
 function loadConfig() {
@@ -148,6 +151,12 @@ input:focus,select:focus{outline:none;border-color:#ff0033;box-shadow:0 0 0 3px 
 .voltra-social-icon:hover{border-color:#ff0033;box-shadow:0 0 20px rgba(255,0,51,0.4);transform:translateY(-3px)}
 .voltra-err{color:#ff3355;font-size:12px;margin-bottom:15px;font-weight:600;padding:10px;background:rgba(255,0,60,0.1);border-radius:8px}
 
+/* === DASHBOARD VIDEO BACKGROUND === */
+.dashboard-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;overflow:hidden}
+.dashboard-bg video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover;filter:blur(2px) brightness(0.35)}
+.dashboard-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(135deg,rgba(5,5,7,0.85) 0%,rgba(5,5,7,0.7) 50%,rgba(5,5,7,0.9) 100%);pointer-events:none}
+body.dashboard-body{background:transparent}
+
 @media(max-width:520px){.header h1{font-size:12px}.card{padding:20px}.voltra-title{font-size:26px;letter-spacing:4px}}
 `;
 
@@ -208,7 +217,14 @@ app.get("/logout", (req, res) => {
 
 app.get("/dashboard", requireLogin, (req, res) => {
     const isOwner = req.session.user.role === "owner";
-    res.send(`<!DOCTYPE html><html><head><title>DORA CRASHER</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style></head><body>
+    res.send(`<!DOCTYPE html><html><head><title>DORA CRASHER</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style></head><body class="dashboard-body">
+
+<div class="dashboard-bg">
+<video autoplay muted loop playsinline>
+<source src="${BG_VIDEO_URL}" type="video/mp4">
+</video>
+</div>
+<div class="dashboard-overlay"></div>
 
 ${isOwner ? `
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
