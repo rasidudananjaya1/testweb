@@ -680,8 +680,8 @@ app.post("/execute", requireLogin, async (req, res) => {
     
     if (cleanTarget.length < 10) return res.json({ success: false, message: "Invalid number format" });
     
-    // Server console log for debugging - FIXED BACKTICKS
-    console.log(`[DORA CRASHER] Original: ${target} -> Cleaned: ${cleanTarget}`);
+    // Server console log for debugging - FIXED SYNTAX
+    console.log("[DORA CRASHER] Original: " + target + " -> Cleaned: " + cleanTarget);
 
     if (!config.botApiUrl || !config.botApiKey) return res.json({ success: false, message: "Bot API not configured" });
 
