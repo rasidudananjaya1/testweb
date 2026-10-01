@@ -292,7 +292,8 @@ app.get("/dashboard", requireLogin, (req, res) => {
 </div>
 <div class="dashboard-overlay"></div>
 
-<!-- SIDEBAR -->
+${isOwner ? `
+<!-- SIDEBAR (OWNER ONLY) -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
 <button class="close-btn" onclick="closeSidebar()">×</button>
@@ -306,12 +307,13 @@ app.get("/dashboard", requireLogin, (req, res) => {
 </div>
 <button class="refresh-btn" onclick="loadSessions()">REFRESH</button>
 </div>
+` : ''}
 
 <!-- HEADER -->
 <div class="app-header">
 <div class="header-left">
-<button class="menu-btn" onclick="openSidebar()">☰</button>
-<h1>💀 DORA</h1>
+${isOwner ? '<button class="menu-btn" onclick="openSidebar()">☰</button>' : ''}
+<h1>💀 DORA CRASHER</h1>
 </div>
 <div class="header-right">
 <div class="user-badge">
@@ -578,7 +580,7 @@ async function addUser(){
     }catch(e){o.style.display='block';o.style.color='#ff3355';o.textContent='Error: '+e.message}
 }
 
-loadSessions(); setInterval(loadSessions, 10000);
+${isOwner ? 'loadSessions(); setInterval(loadSessions, 10000);' : ''}
 </script>
 </body></html>`);
 });
@@ -640,4 +642,4 @@ app.post("/admin/adduser", requireOwner, (req, res) => {
     res.json({ success: true, message: "User " + username + " added as " + (role || "user") });
 });
 
-app.listen(PORT, () => console.log("WEB PANEL ON PORT " + PORT));
+app.listen(PORT, () => console.log("DORA CRASHER WEB PANEL ON PORT " + PORT));
