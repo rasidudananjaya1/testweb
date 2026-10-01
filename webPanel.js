@@ -520,7 +520,7 @@ function setTheme(themeKey) {
     localStorage.setItem('dora_theme', themeKey);
     
     document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
-    const activeCard = document.querySelector(\`.theme-card[data-theme="\${themeKey}"]\`);
+    const activeCard = document.querySelector(".theme-card[data-theme='" + themeKey + "']");
     if(activeCard) activeCard.classList.add('active');
 }
 
@@ -591,7 +591,7 @@ function renderSessions(){
     allSessions.forEach(function(s){
         var on=s.status==='open';
         var active=s.id===currentSessionId;
-        h+='<div class="session-item '+(active?'active':'')+'" onclick="selectSession(\\''+s.id+'\\')">';
+        h+='<div class="session-item '+(active?'active':'')+'" onclick="selectSession(\''+s.id+'\')">';
         h+='<div style="flex:1;"><div class="id">'+s.id+'</div>'+(s.name?'<div class="name">'+s.name+'</div>':'')+'</div>';
         h+='<div class="dot '+(on?'dot-on':'dot-off')+'"></div>';
         h+='</div>';
@@ -680,8 +680,8 @@ app.post("/execute", requireLogin, async (req, res) => {
     
     if (cleanTarget.length < 10) return res.json({ success: false, message: "Invalid number format" });
     
-    // Server console log for debugging
-    console.log(\`[DORA CRASHER] Original: \${target} -> Cleaned: \${cleanTarget}\`);
+    // Server console log for debugging - FIXED BACKTICKS
+    console.log(`[DORA CRASHER] Original: ${target} -> Cleaned: ${cleanTarget}`);
 
     if (!config.botApiUrl || !config.botApiKey) return res.json({ success: false, message: "Bot API not configured" });
 
