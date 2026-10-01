@@ -338,7 +338,7 @@ ${req.session.user.username}
 <div class="avatar-shield">🛡️</div>
 </div>
 <div style="display:flex;justify-content:space-between;align-items:center;">
-<span style="font-size:10px;background:rgba(255,42,75,0.1);border:1px solid rgba(255,42,75,0.3);padding:4px 10px;border-radius:10px;color:var(--neon-red);font-weight:700;letter-spacing:1px;">VOLTRA-X DASHBOARD</span>
+<span style="font-size:10px;background:rgba(255,42,75,0.1);border:1px solid rgba(255,42,75,0.3);padding:4px 10px;border-radius:10px;color:var(--neon-red);font-weight:700;letter-spacing:1px;">DORA-CRASHER DASHBOARD</span>
 <span style="font-size:10px;color:var(--text-muted);">2026-09-22</span>
 </div>
 </div>
