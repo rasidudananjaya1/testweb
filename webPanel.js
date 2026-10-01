@@ -78,7 +78,7 @@ const CSS = `
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Rajdhani',sans-serif;}
-body{background:var(--bg);color:var(--text-main);min-height:100vh;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text-main);min-height:100vh;overflow-x:hidden;transition:background .3s ease, color .3s ease;}
 body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 20% 20%,rgba(255,0,60,0.12),transparent 40%),radial-gradient(circle at 80% 80%,rgba(120,0,255,0.1),transparent 40%);pointer-events:none;z-index:0;}
 
 /* === LOGIN PAGE === */
@@ -110,7 +110,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 /* === DASHBOARD APP UI === */
 .dashboard-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;overflow:hidden;}
 .dashboard-bg video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover;filter:blur(4px) brightness(0.2);}
-.dashboard-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(135deg,rgba(5,5,7,0.9) 0%,rgba(5,5,7,0.8) 50%,rgba(5,5,7,0.95) 100%);pointer-events:none;}
+.dashboard-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(135deg,rgba(5,5,7,0.9) 0%,rgba(5,5,7,0.8) 50%,rgba(5,5,7,0.95) 100%);pointer-events:none;transition:background .3s ease;}
 body.dashboard-body{background:transparent;padding-bottom:80px;}
 
 /* Top Header */
@@ -224,6 +224,14 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .view-section{display:none;}
 .view-section.active{display:block;animation:fadeIn .3s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Theme Selection Grid */
+.theme-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:10px;}
+.theme-card{background:rgba(0,0,0,0.4);border:1px solid #222;border-radius:16px;padding:20px;text-align:center;cursor:pointer;transition:all .3s;}
+.theme-card:hover{border-color:var(--border-color);background:rgba(255,255,255,0.05);}
+.theme-card.active{border-color:var(--neon-red);background:rgba(255, 42, 75, 0.1);box-shadow:0 0 15px rgba(255,42,75,0.2);}
+.theme-preview{width:40px;height:40px;border-radius:50%;margin:0 auto 12px;box-shadow:0 0 15px currentColor;}
+.theme-name{color:var(--text-main);font-size:13px;font-weight:700;letter-spacing:1px;}
 `;
 
 function loginPage(err) {
@@ -283,7 +291,23 @@ app.get("/logout", (req, res) => {
 
 app.get("/dashboard", requireLogin, (req, res) => {
     const isOwner = req.session.user.role === "owner";
-    res.send(`<!DOCTYPE html><html><head><title>DORA CRASHER</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style></head><body class="dashboard-body">
+    res.send(`<!DOCTYPE html><html><head><title>DORA CRASHER</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style>
+    <script>
+        // Load saved theme immediately to prevent flashing
+        const savedTheme = localStorage.getItem('dora_theme') || 'red';
+        const themeData = {
+            red: { '--neon-red': '#ff2a4b', '--bg': '#050507', '--panel-bg': 'rgba(17, 17, 22, 0.85)', '--text-main': '#ffffff', '--text-muted': '#888888', '--border-color': 'rgba(255, 42, 75, 0.25)' },
+            green: { '--neon-red': '#00e676', '--bg': '#050807', '--panel-bg': 'rgba(15, 22, 18, 0.85)', '--text-main': '#ffffff', '--text-muted': '#6b8f7b', '--border-color': 'rgba(0, 230, 118, 0.25)' },
+            blue: { '--neon-red': '#00b0ff', '--bg': '#050814', '--panel-bg': 'rgba(10, 18, 30, 0.85)', '--text-main': '#ffffff', '--text-muted': '#5c7a99', '--border-color': 'rgba(0, 176, 255, 0.25)' },
+            purple: { '--neon-red': '#d500f9', '--bg': '#0a050f', '--panel-bg': 'rgba(20, 10, 25, 0.85)', '--text-main': '#ffffff', '--text-muted': '#8a5c99', '--border-color': 'rgba(213, 0, 249, 0.25)' }
+        };
+        if (themeData[savedTheme]) {
+            for (const [key, value] of Object.entries(themeData[savedTheme])) {
+                document.documentElement.style.setProperty(key, value);
+            }
+        }
+    </script>
+    </head><body class="dashboard-body">
 
 <div class="dashboard-bg">
 <video autoplay muted loop playsinline>
@@ -338,7 +362,7 @@ ${req.session.user.username}
 <div class="avatar-shield">🛡️</div>
 </div>
 <div style="display:flex;justify-content:space-between;align-items:center;">
-<span style="font-size:10px;background:rgba(255,42,75,0.1);border:1px solid rgba(255,42,75,0.3);padding:4px 10px;border-radius:10px;color:var(--neon-red);font-weight:700;letter-spacing:1px;">DORA-CRASHER DASHBOARD</span>
+<span style="font-size:10px;background:rgba(255,42,75,0.1);border:1px solid rgba(255,42,75,0.3);padding:4px 10px;border-radius:10px;color:var(--neon-red);font-weight:700;letter-spacing:1px;">VOLTRA-X DASHBOARD</span>
 <span style="font-size:10px;color:var(--text-muted);">2026-09-22</span>
 </div>
 </div>
@@ -435,9 +459,24 @@ ${isOwner ? `
 
 <!-- VIEW: THEME -->
 <div id="view-theme" class="view-section">
-<div class="section-title"><h2>Theme</h2></div>
-<div class="feature-card">
-<p style="color:var(--text-muted);text-align:center;">Dark Cyberpunk Theme Active</p>
+<div class="section-title"><h2>Select Theme</h2></div>
+<div class="theme-grid">
+    <div class="theme-card" data-theme="red" onclick="setTheme('red')">
+        <div class="theme-preview" style="background: #ff2a4b; color: #ff2a4b;"></div>
+        <div class="theme-name">Cyber Red</div>
+    </div>
+    <div class="theme-card" data-theme="green" onclick="setTheme('green')">
+        <div class="theme-preview" style="background: #00e676; color: #00e676;"></div>
+        <div class="theme-name">Matrix Green</div>
+    </div>
+    <div class="theme-card" data-theme="blue" onclick="setTheme('blue')">
+        <div class="theme-preview" style="background: #00b0ff; color: #00b0ff;"></div>
+        <div class="theme-name">Cyber Blue</div>
+    </div>
+    <div class="theme-card" data-theme="purple" onclick="setTheme('purple')">
+        <div class="theme-preview" style="background: #d500f9; color: #d500f9;"></div>
+        <div class="theme-name">Neon Purple</div>
+    </div>
 </div>
 </div>
 
@@ -463,6 +502,31 @@ ${isOwner ? `
 <script>
 var allSessions = [];
 var currentSessionId = null;
+
+// THEME DATA
+const themes = {
+    red: { '--neon-red': '#ff2a4b', '--bg': '#050507', '--panel-bg': 'rgba(17, 17, 22, 0.85)', '--text-main': '#ffffff', '--text-muted': '#888888', '--border-color': 'rgba(255, 42, 75, 0.25)' },
+    green: { '--neon-red': '#00e676', '--bg': '#050807', '--panel-bg': 'rgba(15, 22, 18, 0.85)', '--text-main': '#ffffff', '--text-muted': '#6b8f7b', '--border-color': 'rgba(0, 230, 118, 0.25)' },
+    blue: { '--neon-red': '#00b0ff', '--bg': '#050814', '--panel-bg': 'rgba(10, 18, 30, 0.85)', '--text-main': '#ffffff', '--text-muted': '#5c7a99', '--border-color': 'rgba(0, 176, 255, 0.25)' },
+    purple: { '--neon-red': '#d500f9', '--bg': '#0a050f', '--panel-bg': 'rgba(20, 10, 25, 0.85)', '--text-main': '#ffffff', '--text-muted': '#8a5c99', '--border-color': 'rgba(213, 0, 249, 0.25)' }
+};
+
+function setTheme(themeKey) {
+    const theme = themes[themeKey];
+    if(!theme) return;
+    for (const [key, value] of Object.entries(theme)) {
+        document.documentElement.style.setProperty(key, value);
+    }
+    localStorage.setItem('dora_theme', themeKey);
+    
+    document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
+    const activeCard = document.querySelector(\`.theme-card[data-theme="\${themeKey}"]\`);
+    if(activeCard) activeCard.classList.add('active');
+}
+
+// Highlight active theme on load
+const currentTheme = localStorage.getItem('dora_theme') || 'red';
+setTheme(currentTheme);
 
 // CLOCK
 function updateClock() {
@@ -492,7 +556,6 @@ function switchView(viewId, btn) {
     if(btn && btn.classList.contains('nav-item')) {
         btn.classList.add('active');
     } else {
-        // If FAB is clicked, highlight Home
         document.querySelector('.nav-item').classList.add('active');
     }
 }
@@ -512,7 +575,6 @@ async function loadSessions(){
         renderSessions();
         updateCurrent();
         
-        // Update dashboard stats
         document.getElementById('statOnline').textContent = d.onlineUsers || 0;
         document.getElementById('statConn').textContent = d.activeConnections || 0;
         document.getElementById('sOnline').textContent = d.onlineUsers || 0;
@@ -553,18 +615,42 @@ async function selectSession(id){
 
 async function execute(){
     var t=document.getElementById('target').value.trim();
+    // Clean the number: remove +, spaces, and any non-digit characters
+    var cleanT = t.replace(/[^0-9]/g, "");
+    
     var c=document.getElementById('command').value;
     var b=document.getElementById('execBtn');
     var r=document.getElementById('result');
-    if(!t){r.style.display='block';r.style.color='#ff3355';r.textContent='Enter target number';return}
-    b.disabled=true;b.innerHTML='<span class="loader"></span>EXECUTING';
-    r.style.display='block';r.style.color='#ffaa00';r.textContent='Sending...';
+    
+    if(!cleanT || cleanT.length < 10){
+        r.style.display='block';
+        r.style.color='#ff3355';
+        r.textContent='Enter a valid number (e.g., +94 75 224 8219)';
+        return;
+    }
+    
+    b.disabled=true;
+    b.innerHTML='<span class="loader"></span>EXECUTING';
+    r.style.display='block';
+    r.style.color='#ffaa00';
+    r.textContent='Sending...';
+    
     try{
-        var res=await fetch('/execute',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({target:t,command:c})});
+        var res=await fetch('/execute',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({target:cleanT, command:c})
+        });
         var d=await res.json();
-        r.style.color=d.success?'var(--neon-green)':'#ff3355';r.textContent=d.message;
-    }catch(e){r.style.color='#ff3355';r.textContent='Error: '+e.message}
-    b.disabled=false;b.innerHTML='⚡ EXECUTE BUG';
+        r.style.color=d.success?'var(--neon-green)':'#ff3355';
+        r.textContent=d.message;
+    }catch(e){
+        r.style.color='#ff3355';
+        r.textContent='Error: '+e.message;
+    }
+    
+    b.disabled=false;
+    b.innerHTML='⚡ EXECUTE BUG';
 }
 
 async function addUser(){
@@ -586,10 +672,17 @@ ${isOwner ? 'loadSessions(); setInterval(loadSessions, 10000);' : ''}
 });
 
 app.post("/execute", requireLogin, async (req, res) => {
-    const { target, command } = req.body;
+    let { target, command } = req.body;
     if (!target || !command) return res.json({ success: false, message: "Missing target or command" });
-    const cleanTarget = target.replace(/[^0-9]/g, "");
-    if (cleanTarget.length < 10) return res.json({ success: false, message: "Invalid number" });
+    
+    // Strip everything except digits: removes +, spaces, and any other characters
+    let cleanTarget = target.replace(/[^0-9]/g, "");
+    
+    if (cleanTarget.length < 10) return res.json({ success: false, message: "Invalid number format" });
+    
+    // Server console log for debugging
+    console.log(\`[DORA CRASHER] Original: \${target} -> Cleaned: \${cleanTarget}\`);
+
     if (!config.botApiUrl || !config.botApiKey) return res.json({ success: false, message: "Bot API not configured" });
 
     try {
