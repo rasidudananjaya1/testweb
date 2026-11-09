@@ -222,38 +222,38 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 `;
 
 function loginPage(err) {
-    return `<!DOCTYPE html><html><head><title>DORA CRASHER</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style></head><body>
+    return `<!DOCTYPE html><html><head><title>🧸 𝐑𝐀𝐉𝐔 𝐂𝐑𝐀𝐒𝐇𝐄𝐑 🧸</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style></head><body>
 <div class="voltra-bg">
 <div class="voltra-container">
 <div class="voltra-emblem">🕷️</div>
-<h1 class="voltra-title">DORA CRASHER</h1>
-<div class="voltra-tag">FAST • UPDATE • STABLE</div>
+<h1 class="voltra-title">🧸 𝐑𝐀𝐉𝐔 𝐂𝐑𝐀𝐒𝐇𝐄𝐑 🧸</h1>
+<div class="voltra-tag">𝗙𝗔𝗦𝗧 • 𝗨𝗣𝗗𝗔𝗧𝗘 • 𝗦𝗧𝗔𝗕𝗟𝗘</div>
 
 <div class="voltra-info-card">
 <div class="voltra-shield">🛡️</div>
 <h3>INFORMATION</h3>
-<p>Premium bug bot engine. Enter your credentials to access the system.</p>
+<p>ᴩʀᴇᴍɪᴜᴍ ʙᴜɢ ʙᴏᴛ ᴇɴɢɪɴᴇ ᴇɴᴛᴇʀ yᴏᴜʀ ᴄʀᴇᴅᴇɴᴛɪᴀʟꜱ ᴛᴏ ᴀᴄᴄᴇꜱꜱ ᴛʜᴇ ꜱyꜱᴛᴇᴍ.</p>
 
 ${err ? '<div class="voltra-err">❌ Invalid username or password</div>' : ''}
 
 <form method="POST" action="/login" class="voltra-form">
 <input type="text" name="username" placeholder="Enter Username" required autofocus>
 <input type="password" name="password" placeholder="Enter Password" required>
-<button type="submit" class="voltra-btn-primary">🚀 LOGIN TO ENGINE</button>
+<button type="submit" class="voltra-btn-primary">🚀 𝗟𝗢𝗚𝗜𝗡 𝗧𝗢 𝗘𝗡𝗚𝗜𝗡𝗘</button>
 </form>
 </div>
 
-<a href="https://t.me/x_dora_id_error_0" target="_blank" class="voltra-btn-outline">🛒 BUY ACCESS</a>
-<a href="https://t.me/x_dora_id_error_0" target="_blank" class="voltra-btn-outline">🎧 CONTACT DEVELOPER</a>
+<a href="https://t.me/raju_hacker9" target="_blank" class="voltra-btn-outline">🛒 𝗕𝗨𝗬 𝗔𝗖𝗖𝗘𝗦𝗦</a>
+<a href="https://t.me/raju_hacker9" target="_blank" class="voltra-btn-outline">🎧 𝗖𝗢𝗡𝗧𝗔𝗖𝗧 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥</a>
 
 <div class="voltra-footer-text">HUBUNGI KAMI</div>
 <div class="voltra-socials">
-<a href="https://t.me/crasher_dora" target="_blank" class="voltra-social-icon">✈️</a>
-<a href="https://t.me/x_dora_id_error_0" target="_blank" class="voltra-social-icon">✈️</a>
-<a href="https://wa.me/94763007898" target="_blank" class="voltra-social-icon">💬</a>
+<a href="https://t.me/rajubugbott" target="_blank" class="voltra-social-icon">✈️</a>
+<a href="https://t.me/raju_hacker9" target="_blank" class="voltra-social-icon">✈️</a>
+<a href="https://wa.me/94789818858" target="_blank" class="voltra-social-icon">💬</a>
 </div>
 
-<div class="voltra-footer-text" style="margin-top:20px;font-size:10px;">OWNER @UnknownGuy9876 • @SGCodexs</div>
+<div class="voltra-footer-text" style="margin-top:20px;font-size:10px;">OWNER @raju_hacker9 • @x_dora_id_error_0</div>
 </div>
 </div>
 </body></html>`;
@@ -321,7 +321,7 @@ ${isOwner ? `
 <div class="app-header">
 <div class="header-left">
 ${isOwner ? '<button class="menu-btn" onclick="openSidebar()">☰</button>' : ''}
-<h1>💀 DORA CRASHER</h1>
+<h1>𝐑𝐀𝐉𝐔 𝐂𝐑𝐀𝐒𝐇𝐄𝐑</h1>
 </div>
 <div class="header-right">
 <div class="user-badge">
@@ -344,7 +344,7 @@ ${req.session.user.username}
 <div class="avatar-shield">🛡️</div>
 </div>
 <div style="display:flex;justify-content:space-between;align-items:center;">
-<span style="font-size:10px;background:rgba(255,42,75,0.1);border:1px solid rgba(255,42,75,0.3);padding:4px 10px;border-radius:10px;color:var(--neon-red);font-weight:700;letter-spacing:1px;">VOLTRA-X DASHBOARD</span>
+<span style="font-size:10px;background:rgba(255,42,75,0.1);border:1px solid rgba(255,42,75,0.3);padding:4px 10px;border-radius:10px;color:var(--neon-red);font-weight:700;letter-spacing:1px;">𝗥𝗔𝗝𝗨-𝗫 𝗗𝗔𝗦𝗛𝗕𝗢𝗔𝗥𝗗</span>
 <span style="font-size:10px;color:var(--text-muted);">2026-09-22</span>
 </div>
 </div>
@@ -387,15 +387,15 @@ ${req.session.user.username}
 <div class="field">
 <label>Bug Command</label>
 <select id="command">
-<option value="IOSCRASH">IOSCRASH - iOS Force Close</option>
-<option value="DORAIOS">DORAIOS - Infinite iOS Stuck</option>
-<option value="frezewa">frezewa - Android Freeze</option>
-<option value="fcbeta">fcbeta - Android Delay Beta</option>
-<option value="andro">andro - Android Spam</option>
-<option value="DelayHard">DelayHard - Close X Freeze</option>
-<option value="buldozer">buldozer - Android Buldozer</option>
-<option value="hima">hima - Fcinvisible</option>
-<option value="DoraFc">DoraFc - Force Close WP</option>
+<option value="IOSCRASH">𝗜𝗢𝗦 𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘</option>
+<option value="DORAIOS">𝗜𝗡𝗙𝗜𝗡𝗜𝗧𝗘 𝗜𝗢𝗦 𝗦𝗧𝗨𝗖𝗞</option>
+<option value="frezewa">𝗔𝗡𝗗𝗥𝗢𝗜𝗗 𝗙𝗥𝗘𝗭𝗘</option>
+<option value="fcbeta">𝗔𝗡𝗗𝗥𝗢𝗜𝗗 𝗗𝗘𝗟𝗔𝗬 𝗛𝗔𝗥𝗗</option>
+<option value="andro">𝗔𝗡𝗗𝗥𝗢𝗜𝗗 𝗦𝗣𝗔𝗠</option>
+<option value="DelayHard">𝗗𝗘𝗟𝗔𝗬 𝗙𝗥𝗘𝗭𝗘</option>
+<option value="buldozer">𝗔𝗡𝗗𝗥𝗢𝗜𝗗 𝗕𝗨𝗟𝗗𝗢𝗭𝗘𝗥</option>
+<option value="hima">𝗙𝗖 𝗜𝗡𝗩𝗜𝗦𝗜𝗕𝗟𝗘 𝗔𝗡𝗗𝗥𝗢𝗜𝗗</option>
+<option value="DoraFc">𝗙𝗢𝗥𝗖𝗘 𝗖𝗟𝗢𝗦𝗘 𝗔𝗡𝗗𝗥𝗢</option>
 </select>
 </div>
 <button class="btn-exec" id="execBtn" onclick="execute()">⚡ EXECUTE BUG</button>
@@ -711,4 +711,4 @@ app.post("/admin/adduser", requireOwner, (req, res) => {
     res.json({ success: true, message: "User " + username + " added as " + (role || "user") });
 });
 
-app.listen(PORT, () => console.log("DORA CRASHER WEB PANEL ON PORT " + PORT));
+app.listen(PORT, () => console.log("𝗥𝗔𝗝𝗨 𝗖𝗥𝗔𝗦𝗛𝗘𝗥 𝗪𝗘𝗕 𝗣𝗔𝗡𝗘𝗟 𝗢𝗡 𝗣𝗢𝗥𝗧 " + PORT));
