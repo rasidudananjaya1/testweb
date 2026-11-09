@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 const CONFIG_FILE = path.join(__dirname, "webConfig.json");
 const USERS_FILE = path.join(__dirname, "webusers.json");
 
-// Video URL - oyata one nam wenas karanna
 const BG_VIDEO_URL = "https://files.catbox.moe/baqsck.mp4";
 
 let config = { botApiUrl: "", botApiKey: "" };
@@ -81,7 +80,6 @@ const CSS = `
 body{background:var(--bg);color:var(--text-main);min-height:100vh;overflow-x:hidden;transition:background .3s ease, color .3s ease;}
 body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 20% 20%,rgba(255,0,60,0.12),transparent 40%),radial-gradient(circle at 80% 80%,rgba(120,0,255,0.1),transparent 40%);pointer-events:none;z-index:0;}
 
-/* === LOGIN PAGE === */
 .voltra-bg{background:var(--bg);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;position:relative;overflow:hidden;}
 .voltra-container{width:100%;max-width:420px;text-align:center;position:relative;z-index:2;}
 .voltra-emblem{font-size:80px;margin-bottom:10px;filter:drop-shadow(0 0 30px rgba(255,42,75,0.8));animation:pulse-glow 2s infinite alternate;display:inline-block;}
@@ -107,13 +105,11 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .voltra-social-icon:hover{border-color:var(--neon-red);box-shadow:0 0 20px rgba(255,42,75,0.4);transform:translateY(-3px);}
 .voltra-err{color:#ff3355;font-size:12px;margin-bottom:15px;font-weight:600;padding:10px;background:rgba(255,42,75,0.1);border-radius:8px;}
 
-/* === DASHBOARD APP UI === */
 .dashboard-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;overflow:hidden;}
 .dashboard-bg video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover;filter:blur(4px) brightness(0.2);}
 .dashboard-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(135deg,rgba(5,5,7,0.9) 0%,rgba(5,5,7,0.8) 50%,rgba(5,5,7,0.95) 100%);pointer-events:none;transition:background .3s ease;}
 body.dashboard-body{background:transparent;padding-bottom:80px;}
 
-/* Top Header */
 .app-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:rgba(10,10,14,0.9);backdrop-filter:blur(15px);border-bottom:1px solid var(--border-color);position:sticky;top:0;z-index:100;}
 .header-left{display:flex;align-items:center;gap:14px;}
 .header-left h1{color:var(--neon-red);font-size:16px;letter-spacing:3px;font-weight:800;text-shadow:0 0 10px rgba(255,42,75,0.5);}
@@ -124,10 +120,8 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .badge-owner{color:var(--neon-red);text-shadow:0 0 5px var(--neon-red);}
 .badge-user{color:var(--neon-green);text-shadow:0 0 5px var(--neon-green);}
 
-/* Main Container */
 .app-container{max-width:480px;margin:0 auto;padding:20px;position:relative;z-index:1;}
 
-/* Welcome Card */
 .welcome-card{background:var(--panel-bg);border:1px solid var(--border-color);border-radius:20px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.6);}
 .welcome-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--neon-red),transparent);}
 .welcome-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
@@ -135,7 +129,6 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .welcome-info p{color:#fff;font-size:18px;font-weight:800;letter-spacing:1px;}
 .avatar-shield{width:50px;height:50px;background:linear-gradient(135deg,var(--neon-red),#b3001b);border-radius:14px;display:flex;justify-content:center;align-items:center;font-size:24px;box-shadow:0 0 20px rgba(255,42,75,0.5);}
 
-/* Stats Grid */
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
 .stat-box{background:rgba(0,0,0,0.4);border:1px solid #222;border-radius:14px;padding:16px 10px;text-align:center;transition:all .3s;}
 .stat-box:hover{border-color:var(--border-color);box-shadow:0 0 15px rgba(255,42,75,0.1);}
@@ -143,12 +136,10 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .stat-val{color:#fff;font-size:16px;font-weight:800;font-family:'Share Tech Mono',monospace;margin-bottom:4px;}
 .stat-label{color:var(--text-muted);font-size:10px;letter-spacing:1px;text-transform:uppercase;}
 
-/* Section Title */
 .section-title{display:flex;align-items:center;gap:10px;margin-bottom:16px;margin-top:24px;}
 .section-title h2{color:#fff;font-size:14px;letter-spacing:2px;font-weight:800;text-transform:uppercase;}
 .section-title::before{content:'';width:4px;height:18px;background:linear-gradient(180deg,var(--neon-red),#b3001b);border-radius:2px;box-shadow:0 0 10px var(--neon-red);}
 
-/* Feature Card (Bug Execute) */
 .feature-card{background:var(--panel-bg);border:1px solid var(--border-color);border-radius:20px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden;}
 .feature-card::after{content:'';position:absolute;bottom:-50px;right:-50px;width:150px;height:150px;background:radial-gradient(circle,rgba(255,42,75,0.15),transparent 70%);pointer-events:none;}
 .field{margin-bottom:16px;}
@@ -160,7 +151,6 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .btn-exec:disabled{background:#222;box-shadow:none;cursor:not-allowed;transform:none;}
 .result{margin-top:16px;padding:16px;background:rgba(0,0,0,0.5);border-left:4px solid var(--neon-red);border-radius:8px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--neon-green);white-space:pre-wrap;word-break:break-all;line-height:1.6;display:none;}
 
-/* Server Status */
 .status-card{background:var(--panel-bg);border:1px solid var(--border-color);border-radius:20px;padding:20px;margin-bottom:20px;}
 .status-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
 .status-badge{padding:6px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:1px;background:rgba(255,42,75,0.2);color:var(--neon-red);border:1px solid rgba(255,42,75,0.4);}
@@ -170,7 +160,6 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .status-item .val{font-size:14px;font-weight:800;font-family:'Share Tech Mono',monospace;color:#fff;margin-bottom:4px;}
 .status-item .lbl{font-size:9px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;}
 
-/* Local Time Widget */
 .time-widget{background:var(--panel-bg);border:1px solid var(--border-color);border-radius:20px;padding:20px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;}
 .time-left h3{color:var(--text-muted);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
 .time-left .clock{color:#fff;font-size:32px;font-weight:800;font-family:'Share Tech Mono',monospace;text-shadow:0 0 15px rgba(255,42,75,0.5);}
@@ -178,7 +167,6 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .time-right .date{color:var(--neon-red);font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:4px;}
 .time-right .day{color:var(--text-muted);font-size:11px;text-transform:uppercase;}
 
-/* Bottom Navigation */
 .bottom-nav{position:fixed;bottom:0;left:0;width:100%;background:rgba(10,10,14,0.95);backdrop-filter:blur(20px);border-top:1px solid var(--border-color);display:flex;justify-content:space-around;align-items:center;padding:10px 0 15px 0;z-index:1000;}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-muted);text-decoration:none;font-size:10px;font-weight:700;letter-spacing:1px;transition:all .3s;cursor:pointer;background:none;border:none;width:60px;}
 .nav-item.active{color:var(--neon-red);text-shadow:0 0 10px rgba(255,42,75,0.5);}
@@ -187,7 +175,6 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .nav-fab{width:56px;height:56px;background:linear-gradient(135deg,var(--neon-red),#b3001b);border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:24px;color:#fff;box-shadow:0 0 20px rgba(255,42,75,0.6);transform:translateY(-20px);border:4px solid var(--bg);cursor:pointer;transition:all .3s;}
 .nav-fab:hover{transform:translateY(-25px) scale(1.05);box-shadow:0 0 30px rgba(255,42,75,0.8);}
 
-/* Sidebar */
 .sidebar{position:fixed;top:0;left:-340px;width:320px;height:100vh;background:rgba(10,10,14,0.98);backdrop-filter:blur(20px);border-right:1px solid var(--border-color);z-index:2000;transition:left .3s ease;overflow-y:auto;padding:24px 20px;}
 .sidebar.open{left:0;}
 .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1999;opacity:0;pointer-events:none;transition:opacity .3s;}
@@ -211,27 +198,27 @@ body.dashboard-body{background:transparent;padding-bottom:80px;}
 .refresh-btn{width:100%;padding:10px;margin-top:16px;background:rgba(255,255,255,0.05);border:1px solid #222;border-radius:8px;color:#fff;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase;}
 .refresh-btn:hover{border-color:var(--neon-red);}
 
-/* Admin Card */
 .admin-card{background:var(--panel-bg);border:1px solid var(--border-color);border-radius:20px;padding:24px;margin-bottom:20px;}
 .btn-green{width:100%;padding:16px;background:linear-gradient(135deg,var(--neon-green),#009624);border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:800;letter-spacing:2px;cursor:pointer;text-transform:uppercase;box-shadow:0 8px 25px rgba(0,230,118,0.4);transition:all .3s;margin-top:16px;}
 .btn-green:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,230,118,0.6);}
 
-/* Loader */
 .loader{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:8px;vertical-align:middle;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Views */
 .view-section{display:none;}
 .view-section.active{display:block;animation:fadeIn .3s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* Theme Selection Grid */
 .theme-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:10px;}
 .theme-card{background:rgba(0,0,0,0.4);border:1px solid #222;border-radius:16px;padding:20px;text-align:center;cursor:pointer;transition:all .3s;}
 .theme-card:hover{border-color:var(--border-color);background:rgba(255,255,255,0.05);}
 .theme-card.active{border-color:var(--neon-red);background:rgba(255, 42, 75, 0.1);box-shadow:0 0 15px rgba(255,42,75,0.2);}
 .theme-preview{width:40px;height:40px;border-radius:50%;margin:0 auto 12px;box-shadow:0 0 15px currentColor;}
 .theme-name{color:var(--text-main);font-size:13px;font-weight:700;letter-spacing:1px;}
+
+.config-status{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:16px;}
+.config-status.ok{background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.3);color:var(--neon-green);}
+.config-status.bad{background:rgba(255,42,75,0.1);border:1px solid rgba(255,42,75,0.3);color:var(--neon-red);}
 `;
 
 function loginPage(err) {
@@ -293,7 +280,6 @@ app.get("/dashboard", requireLogin, (req, res) => {
     const isOwner = req.session.user.role === "owner";
     res.send(`<!DOCTYPE html><html><head><title>DORA CRASHER</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>${CSS}</style>
     <script>
-        // Load saved theme immediately to prevent flashing
         const savedTheme = localStorage.getItem('dora_theme') || 'red';
         const themeData = {
             red: { '--neon-red': '#ff2a4b', '--bg': '#050507', '--panel-bg': 'rgba(17, 17, 22, 0.85)', '--text-main': '#ffffff', '--text-muted': '#888888', '--border-color': 'rgba(255, 42, 75, 0.25)' },
@@ -317,7 +303,6 @@ app.get("/dashboard", requireLogin, (req, res) => {
 <div class="dashboard-overlay"></div>
 
 ${isOwner ? `
-<!-- SIDEBAR (OWNER ONLY) -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
 <button class="close-btn" onclick="closeSidebar()">×</button>
@@ -333,7 +318,6 @@ ${isOwner ? `
 </div>
 ` : ''}
 
-<!-- HEADER -->
 <div class="app-header">
 <div class="header-left">
 ${isOwner ? '<button class="menu-btn" onclick="openSidebar()">☰</button>' : ''}
@@ -348,10 +332,8 @@ ${req.session.user.username}
 </div>
 </div>
 
-<!-- MAIN CONTAINER -->
 <div class="app-container">
 
-<!-- VIEW: HOME -->
 <div id="view-home" class="view-section active">
 <div class="welcome-card">
 <div class="welcome-top">
@@ -435,7 +417,6 @@ ${req.session.user.username}
 </div>
 </div>
 
-<!-- VIEW: INFO -->
 <div id="view-info" class="view-section">
 <div class="section-title"><h2>System Info</h2></div>
 <div class="feature-card">
@@ -443,9 +424,19 @@ ${req.session.user.username}
 </div>
 </div>
 
-<!-- VIEW: TOOLS (OWNER ONLY) -->
 <div id="view-tools" class="view-section">
 ${isOwner ? `
+<div class="section-title"><h2>Bot API Config</h2></div>
+<div class="admin-card">
+<div class="config-status ${config.botApiUrl && config.botApiKey ? 'ok' : 'bad'}" id="configStatus">
+${config.botApiUrl && config.botApiKey ? '✓ API CONFIGURED' : '✕ API NOT CONFIGURED'}
+</div>
+<div class="field"><label>Bot API URL</label><input type="text" id="cfgUrl" placeholder="https://your-bot.com" value="${config.botApiUrl || ''}"></div>
+<div class="field"><label>Bot API Key</label><input type="text" id="cfgKey" placeholder="x-api-key value" value="${config.botApiKey || ''}"></div>
+<button class="btn-exec" onclick="saveApiConfig()">💾 SAVE API CONFIG</button>
+<div id="cfgResult" class="result"></div>
+</div>
+
 <div class="section-title"><h2>Owner Control</h2></div>
 <div class="admin-card">
 <div class="field"><label>Username</label><input type="text" id="newUser" placeholder="New username"></div>
@@ -457,7 +448,6 @@ ${isOwner ? `
 ` : '<div class="feature-card"><p style="color:var(--text-muted);text-align:center;">Access Denied</p></div>'}
 </div>
 
-<!-- VIEW: THEME -->
 <div id="view-theme" class="view-section">
 <div class="section-title"><h2>Select Theme</h2></div>
 <div class="theme-grid">
@@ -482,7 +472,6 @@ ${isOwner ? `
 
 </div>
 
-<!-- BOTTOM NAVIGATION -->
 <div class="bottom-nav">
 <button class="nav-item active" onclick="switchView('home', this)">
 <span class="nav-icon">🏠</span>HOME
@@ -503,7 +492,6 @@ ${isOwner ? `
 var allSessions = [];
 var currentSessionId = null;
 
-// THEME DATA
 const themes = {
     red: { '--neon-red': '#ff2a4b', '--bg': '#050507', '--panel-bg': 'rgba(17, 17, 22, 0.85)', '--text-main': '#ffffff', '--text-muted': '#888888', '--border-color': 'rgba(255, 42, 75, 0.25)' },
     green: { '--neon-red': '#00e676', '--bg': '#050807', '--panel-bg': 'rgba(15, 22, 18, 0.85)', '--text-main': '#ffffff', '--text-muted': '#6b8f7b', '--border-color': 'rgba(0, 230, 118, 0.25)' },
@@ -518,41 +506,33 @@ function setTheme(themeKey) {
         document.documentElement.style.setProperty(key, value);
     }
     localStorage.setItem('dora_theme', themeKey);
-    
-    // Update active state on cards
     document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
     const activeCard = document.querySelector(\`.theme-card[data-theme="\${themeKey}"]\`);
     if(activeCard) activeCard.classList.add('active');
 }
 
-// Highlight active theme on load
 const currentTheme = localStorage.getItem('dora_theme') || 'red';
 setTheme(currentTheme);
 
-// CLOCK
 function updateClock() {
     var now = new Date();
     var h = String(now.getHours()).padStart(2, '0');
     var m = String(now.getMinutes()).padStart(2, '0');
     var s = String(now.getSeconds()).padStart(2, '0');
     document.getElementById('clock').textContent = h + ':' + m + ':' + s;
-    
     var d = String(now.getDate()).padStart(2, '0');
     var mo = String(now.getMonth() + 1).padStart(2, '0');
     var y = now.getFullYear();
     document.getElementById('date').textContent = d + '/' + mo + '/' + y;
-    
     var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
     document.getElementById('day').textContent = days[now.getDay()];
 }
 setInterval(updateClock, 1000);
 updateClock();
 
-// VIEW SWITCHER
 function switchView(viewId, btn) {
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
     document.getElementById('view-' + viewId).classList.add('active');
-    
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(btn && btn.classList.contains('nav-item')) {
         btn.classList.add('active');
@@ -566,6 +546,7 @@ function closeSidebar(){document.getElementById('sidebar').classList.remove('ope
 
 async function loadSessions(){
     var list=document.getElementById('sessionsList');
+    if(!list) return;
     list.innerHTML='<div style="text-align:center;padding:20px;color:#555;font-size:12px;"><span class="loader"></span> Loading...</div>';
     try{
         var res=await fetch('/api/sessions');
@@ -575,7 +556,6 @@ async function loadSessions(){
         currentSessionId=d.current||null;
         renderSessions();
         updateCurrent();
-        
         document.getElementById('statOnline').textContent = d.onlineUsers || 0;
         document.getElementById('statConn').textContent = d.activeConnections || 0;
         document.getElementById('sOnline').textContent = d.onlineUsers || 0;
@@ -602,6 +582,7 @@ function renderSessions(){
 
 function updateCurrent(){
     var el=document.getElementById('currentSessionValue');
+    if(!el) return;
     if(currentSessionId){el.textContent=currentSessionId;el.style.color='var(--neon-green)';}
     else{el.textContent='No session selected';el.style.color='#666';}
 }
@@ -628,6 +609,22 @@ async function execute(){
         r.style.color=d.success?'var(--neon-green)':'#ff3355';r.textContent=d.message;
     }catch(e){r.style.color='#ff3355';r.textContent='Error: '+e.message}
     b.disabled=false;b.innerHTML='⚡ EXECUTE BUG';
+}
+
+async function saveApiConfig(){
+    var u=document.getElementById('cfgUrl').value.trim();
+    var k=document.getElementById('cfgKey').value.trim();
+    var r=document.getElementById('cfgResult');
+    var s=document.getElementById('configStatus');
+    if(!u||!k){r.style.display='block';r.style.color='#ff3355';r.textContent='Fill both URL and Key';return}
+    try{
+        var res=await fetch('/admin/api-config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:u,key:k})});
+        var d=await res.json();
+        r.style.display='block';r.style.color=d.success?'var(--neon-green)':'#ff3355';r.textContent=d.message;
+        if(d.success){
+            s.className='config-status ok';s.textContent='✓ API CONFIGURED';
+        }
+    }catch(e){r.style.display='block';r.style.color='#ff3355';r.textContent='Error: '+e.message}
 }
 
 async function addUser(){
@@ -692,6 +689,15 @@ app.post("/api/select-session", requireLogin, requireOwner, async (req, res) => 
         const m = e.response && e.response.data && e.response.data.message ? e.response.data.message : e.message;
         res.json({ success: false, message: "Bot server error: " + m });
     }
+});
+
+app.post("/admin/api-config", requireOwner, (req, res) => {
+    const { url, key } = req.body;
+    if (!url || !key) return res.json({ success: false, message: "Fill URL and Key" });
+    config.botApiUrl = url.replace(/\/$/, "");
+    config.botApiKey = key;
+    saveConfig();
+    res.json({ success: true, message: "API config saved\nURL: " + config.botApiUrl });
 });
 
 app.post("/admin/adduser", requireOwner, (req, res) => {
